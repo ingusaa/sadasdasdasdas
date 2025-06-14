@@ -80,7 +80,11 @@
                     <div class="flex-shrink-0">
                         <img src="https://i1.sndcdn.com/avatars-000096663239-zn2950-t500x500.jpg" alt="Server Logo" class="h-8 w-8 rounded-[15%]">
                     </div>
-                    <div class="hidden md:block">
+                    <div class="ml-2 hidden md:block bg-gray-700 px-3 py-1 rounded-md text-center">
+                        <div class="text-xs text-gray-400">IP</div>
+                        <div class="text-sm font-medium text-green-400">202.36.95.10:22850</div>
+                    </div>
+                    <div class="hidden md:block ml-4">
                         <div class="ml-10 flex items-baseline space-x-4">
                             <a href="#home" class="text-green-400 hover:text-green-300 px-3 py-2 rounded-md text-sm font-medium">Home</a>
                             <a href="#gamemodes" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Gamemodes</a>
@@ -97,7 +101,12 @@
                         </button>
                     </div>
                 </div>
-                <div class="-mr-2 flex md:hidden">
+                <div class="flex items-center md:hidden">
+                    <div class="mr-2 bg-gray-700 px-2 py-1 rounded-md text-center">
+                        <div class="text-xs text-gray-400">IP</div>
+                        <div class="text-xs font-medium text-green-400">202.36.95.10:22850</div>
+                    </div>
+                    <div class="-mr-2 flex">
                     <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
                         <span class="sr-only">Open main menu</span>
                         <i class="fas fa-bars"></i>
@@ -136,23 +145,21 @@
                 <p class="mt-6 max-w-lg mx-auto text-xl text-gray-300">
                     Bulgaria lifesteal+factions server (that really loves dragons)
                 </p>
-                <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                <div class="mt-10 flex flex-col items-center gap-4">
                     <div class="server-card bg-gray-900 p-6 rounded-lg shadow-lg max-w-xs mx-auto transition duration-300">
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-gray-400">Server IP</p>
-                                <p class="text-xl font-bold text-green-400">justangel000.mc</p>
+                                <p class="text-xl font-bold text-green-400">202.36.95.10:22850</p>
                             </div>
                             <div class="text-right">
                                 <p class="text-gray-400">Players Online</p>
-                                <p class="text-xl font-bold player-count text-yellow-400">127</p>
+                                <p class="text-xl font-bold player-count text-yellow-400">Loading...</p>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="mt-10">
-                    <button onclick="copyServerIP()" class="minecraft-button bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-md text-lg font-bold transition duration-300">
-                        <i class="fas fa-play mr-2"></i> Join Now
+                    <button onclick="document.getElementById('rules-modal').classList.remove('hidden')" class="minecraft-button bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md text-lg font-medium transition duration-300">
+                        <i class="fas fa-scroll mr-2"></i> Rules
                     </button>
                 </div>
             </div>
@@ -171,92 +178,20 @@
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- EggWars -->
-                <div class="gamemode-card bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="gamemode-icon bg-yellow-600 p-3 rounded-full">
-                                <i class="fas fa-egg text-white text-2xl"></i>
-                            </div>
-                            <h3 class="ml-4 text-xl font-bold text-white">EggWars</h3>
-                        </div>
-                        <p class="text-gray-400">
-                            Protect your egg while trying to destroy others'. Collect resources, build defenses, and eliminate opponents in this strategic PvP game.
-                        </p>
-                        <div class="mt-6 flex justify-between items-center">
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-900 text-yellow-200">
-                                <i class="fas fa-users mr-1"></i> 24/50 playing
-                            </span>
-                            <button onclick="copyServerIP()" class="minecraft-button bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">
-                                Play Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- SkyWars -->
-                <div class="gamemode-card bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="gamemode-icon bg-blue-600 p-3 rounded-full">
-                                <i class="fas fa-cloud text-white text-2xl"></i>
-                            </div>
-                            <h3 class="ml-4 text-xl font-bold text-white">SkyWars</h3>
-                        </div>
-                        <p class="text-gray-400">
-                            Fight on floating islands with limited resources. Be the last player standing in this fast-paced battle royale-style game.
-                        </p>
-                        <div class="mt-6 flex justify-between items-center">
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-900 text-blue-200">
-                                <i class="fas fa-users mr-1"></i> 32/50 playing
-                            </span>
-                            <button onclick="copyServerIP()" class="minecraft-button bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">
-                                Play Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Survival -->
-                <div class="gamemode-card bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="gamemode-icon bg-green-600 p-3 rounded-full">
-                                <i class="fas fa-tree text-white text-2xl"></i>
-                            </div>
-                            <h3 class="ml-4 text-xl font-bold text-white">Survival</h3>
-                        </div>
-                        <p class="text-gray-400">
-                            Classic Minecraft survival with economy, land claims, and player shops. Build, explore, and thrive in our persistent world.
-                        </p>
-                        <div class="mt-6 flex justify-between items-center">
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-900 text-green-200">
-                                <i class="fas fa-users mr-1"></i> 45/100 playing
-                            </span>
-                            <button onclick="copyServerIP()" class="minecraft-button bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">
-                                Play Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- PvP -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Factions -->
                 <div class="gamemode-card bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
                     <div class="p-6">
                         <div class="flex items-center mb-4">
                             <div class="gamemode-icon bg-red-600 p-3 rounded-full">
-                                <i class="fas fa-crosshairs text-white text-2xl"></i>
+                                <i class="fas fa-flag text-white text-2xl"></i>
                             </div>
-                            <h3 class="ml-4 text-xl font-bold text-white">PvP Arena</h3>
+                            <h3 class="ml-4 text-xl font-bold text-white">Factions</h3>
                         </div>
                         <p class="text-gray-400">
-                            Test your combat skills in our custom PvP arenas with various kits and abilities. Climb the leaderboards and prove you're the best!
+                            Claim land, build your faction, and wage war against others. Protect your base with powerful defenses and raid enemy factions for loot and power.
                         </p>
-                        <div class="mt-6 flex justify-between items-center">
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-900 text-red-200">
-                                <i class="fas fa-users mr-1"></i> 18/30 playing
-                            </span>
+                        <div class="mt-6">
                             <button onclick="copyServerIP()" class="minecraft-button bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">
                                 Play Now
                             </button>
@@ -264,29 +199,25 @@
                     </div>
                 </div>
                 
-                <!-- BedWars -->
+                <!-- Lifestyle -->
                 <div class="gamemode-card bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
                     <div class="p-6">
                         <div class="flex items-center mb-4">
-                            <div class="gamemode-icon bg-purple-600 p-3 rounded-full">
-                                <i class="fas fa-bed text-white text-2xl"></i>
+                            <div class="gamemode-icon bg-green-600 p-3 rounded-full">
+                                <i class="fas fa-home text-white text-2xl"></i>
                             </div>
-                            <h3 class="ml-4 text-xl font-bold text-white">BedWars</h3>
+                            <h3 class="ml-4 text-xl font-bold text-white">Lifestyle</h3>
                         </div>
                         <p class="text-gray-400">
-                            Protect your bed while attempting to destroy others'. Work with your team to gather resources and eliminate opponents in this strategic game.
+                            Build, explore, and thrive in our peaceful world. Enjoy economy, player shops, and community builds without the threat of PvP or raiding.
                         </p>
-                        <div class="mt-6 flex justify-between items-center">
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-900 text-purple-200">
-                                <i class="fas fa-users mr-1"></i> 28/40 playing
-                            </span>
-                            <button onclick="copyServerIP()" class="minecraft-button bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">
+                        <div class="mt-6">
+                            <button onclick="copyServerIP()" class="minecraft-button bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">
                                 Play Now
                             </button>
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
     </section>
@@ -539,18 +470,18 @@
                     </div>
                     <div class="text-center md:text-right">
                         <p class="text-gray-400">Server IP</p>
-                        <p class="text-xl font-bold text-green-400">play.justangel000.mc</p>
+                        <p class="text-xl font-bold text-green-400">202.36.95.10:22850</p>
                     </div>
                 </div>
                 
                 <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div class="bg-gray-700 p-4 rounded-lg text-center">
                         <p class="text-gray-400">Players Online</p>
-                        <p class="text-2xl font-bold text-green-400">127</p>
+                        <p id="online-players" class="text-2xl font-bold text-green-400">Loading...</p>
                     </div>
                     <div class="bg-gray-700 p-4 rounded-lg text-center">
                         <p class="text-gray-400">Max Players</p>
-                        <p class="text-2xl font-bold text-white">200</p>
+                        <p id="max-players" class="text-2xl font-bold text-white">Loading...</p>
                     </div>
                     <div class="bg-gray-700 p-4 rounded-lg text-center">
                         <p class="text-gray-400">Uptime</p>
@@ -558,7 +489,7 @@
                     </div>
                     <div class="bg-gray-700 p-4 rounded-lg text-center">
                         <p class="text-gray-400">Version</p>
-                        <p class="text-2xl font-bold text-yellow-400">1.20.1</p>
+                        <p class="text-2xl font-bold text-yellow-400">1.20.5</p>
                     </div>
                 </div>
                 
@@ -610,7 +541,7 @@
                 <div>
                     <h3 class="text-lg font-bold text-white mb-4">Server Info</h3>
                     <ul class="space-y-2">
-                        <li class="text-gray-400">IP: play.justangel000.mc</li>
+                        <li class="text-gray-400">IP: 202.36.95.10:22850</li>
                         <li class="text-gray-400">Version: 1.20.1</li>
                         <li class="text-gray-400">Location: Global</li>
                         <li class="text-gray-400">Players: 127/200</li>
@@ -641,6 +572,61 @@
         </div>
     </footer>
 
+    <!-- Rules Modal -->
+    <div id="rules-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black bg-opacity-70">
+        <div class="bg-gray-800 rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-white">Server Rules</h3>
+                    <button id="close-rules-modal" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                <div id="rules-modal-content" class="prose prose-invert max-w-none">
+                    <h2 class="text-xl font-bold text-white mb-4">🔒 General Rules</h2>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-300">
+                        <li>No cheating or hacking – Use of mods like x-ray, fly, kill aura, or any unfair client is strictly prohibited.</li>
+                        <li>No duping or exploiting bugs – Report bugs instead of abusing them.</li>
+                        <li>No griefing non-faction zones – Lifestyle builds and public areas must be respected.</li>
+                        <li>Respect all players – No racism, hate speech, harassment, or excessive toxicity.</li>
+                        <li>No spamming or advertising – Don't flood chat or advertise other servers.</li>
+                        <li>Use English in public chat – For moderation and fairness, keep public messages in English.</li>
+                        <li>No inappropriate content – Builds, usernames, and skins must remain family-friendly.</li>
+                        <li>Follow staff directions – Arguing with staff can result in a mute or ban.</li>
+                    </ul>
+
+                    <h2 class="text-xl font-bold text-white mt-8 mb-4">⚔️ Faction Rules</h2>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-300">
+                        <li>Factions can raid other factions – But use proper tactics; no glitching or unfair base access.</li>
+                        <li>No TP trapping or killing in safe zones – Killing players via teleport traps or inside protected zones is forbidden.</li>
+                        <li>No insiding – Betraying your faction to give others an unfair advantage will lead to a ban.</li>
+                        <li>No claiming near spawn or lifestyle zones – Keep faction claims at a respectful distance.</li>
+                        <li>Fair raids only – You must break in with skill, not bugs, glitches, or illegal mods.</li>
+                        <li>Limit redstone lag machines – Do not build machines that intentionally lag the server.</li>
+                    </ul>
+
+                    <h2 class="text-xl font-bold text-white mt-8 mb-4">🏡 Lifestyle Rules</h2>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-300">
+                        <li>Lifestyle players are neutral – Don't attack them unless they enter faction territory or engage first.</li>
+                        <li>Respect lifestyle builds – These are not raidable unless agreed upon in events.</li>
+                        <li>No forcing lifestyle players to join factions – Let them play at their own pace.</li>
+                    </ul>
+
+                    <h2 class="text-xl font-bold text-white mt-8 mb-4">📜 Economy & Marketplace</h2>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-300">
+                        <li>No scamming in trades or shops – Always provide what you advertise.</li>
+                        <li>Don't abuse the auction or shop system – Keep prices fair, no troll listings.</li>
+                    </ul>
+
+                    <h2 class="text-xl font-bold text-white mt-8 mb-4">🛡️ Final Rule</h2>
+                    <p class="text-gray-300">
+                        Have fun & help build the community – Toxic players ruin the game. Let's grow a fun and fair server together!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Back to Top Button -->
     <button id="back-to-top" class="fixed bottom-8 right-8 bg-green-600 hover:bg-green-700 text-white p-3 rounded-full shadow-lg transition duration-300 opacity-0 invisible">
         <i class="fas fa-arrow-up"></i>
@@ -649,7 +635,7 @@
     <script>
         // Function to copy server IP
         function copyServerIP() {
-            const ip = 'play.justangel000.mc';
+            const ip = '202.36.95.10:22850';
             navigator.clipboard.writeText(ip)
                 .then(() => alert(`Server IP ${ip} copied to clipboard!`))
                 .catch(err => console.error('Failed to copy IP:', err));
@@ -706,18 +692,93 @@
             });
         });
         
-        // Animate player count (simulate changing player count)
-        const playerCountElement = document.querySelector('.player-count');
-        if (playerCountElement) {
-            let count = 127;
-            setInterval(() => {
-                // Random small change to simulate player joining/leaving
-                const change = Math.random() > 0.5 ? 1 : -1;
-                count = Math.max(100, Math.min(150, count + change));
-                playerCountElement.textContent = Math.floor(count);
-            }, 5000);
+        // Fetch and update server stats
+        async function fetchServerStats() {
+            try {
+                const response = await fetch('https://api.mcsrvstat.us/2/202.36.95.10:22850');
+                const data = await response.json();
+                
+                const statusElement = document.querySelector('.relative .h-3');
+                const statusTextElement = document.querySelector('.ml-4 p');
+                const onlinePlayersElement = document.getElementById('online-players');
+                const maxPlayersElement = document.getElementById('max-players');
+                const playerCountElement = document.querySelector('.player-count');
+                const versionElement = document.querySelector('footer li:nth-child(2)');
+                
+                if (data.online) {
+                    // Update status indicator
+                    if (statusElement) {
+                        statusElement.classList.remove('bg-red-500');
+                        statusElement.classList.add('bg-green-500');
+                    }
+                    if (statusTextElement) {
+                        statusTextElement.textContent = 'Online and running smoothly';
+                        statusTextElement.classList.remove('text-red-400');
+                        statusTextElement.classList.add('text-green-400');
+                    }
+                    
+                    // Update player counts
+                    if (onlinePlayersElement) onlinePlayersElement.textContent = data.players.online;
+                    if (maxPlayersElement) maxPlayersElement.textContent = data.players.max;
+                    if (playerCountElement) playerCountElement.textContent = data.players.online;
+                    
+                    // Update version
+                    if (data.version && versionElement) {
+                        versionElement.textContent = `Version: ${data.version}`;
+                    }
+                    
+                    // Update gamemode player counts if available
+                    if (data.players.list) {
+                        document.querySelectorAll('.gamemode-card').forEach(card => {
+                        });
+                    }
+                } else {
+                    // Server offline
+                    if (statusElement) {
+                        statusElement.classList.remove('bg-green-500');
+                        statusElement.classList.add('bg-red-500');
+                    }
+                    if (statusTextElement) {
+                        statusTextElement.textContent = 'Server offline';
+                        statusTextElement.classList.remove('text-green-400');
+                        statusTextElement.classList.add('text-red-400');
+                    }
+                    if (onlinePlayersElement) onlinePlayersElement.textContent = '0';
+                    if (playerCountElement) playerCountElement.textContent = '0';
+                }
+            } catch (error) {
+                console.error('Error fetching server stats:', error);
+            }
         }
+
+        // Initial fetch and then every 30 seconds
+        fetchServerStats();
+        setInterval(fetchServerStats, 30000);
         
+        // Rules modal functionality
+        const rulesModal = document.getElementById('rules-modal');
+        const closeRulesModal = document.getElementById('close-rules-modal');
+
+        // Show rules modal when clicking rules button in nav
+        document.querySelectorAll('a[href="#rules"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                rulesModal.classList.remove('hidden');
+            });
+        });
+
+        // Close modal
+        closeRulesModal.addEventListener('click', () => {
+            rulesModal.classList.add('hidden');
+        });
+
+        // Close when clicking outside modal
+        rulesModal.addEventListener('click', (e) => {
+            if (e.target === rulesModal) {
+                rulesModal.classList.add('hidden');
+            }
+        });
+
         // Minecraft button effect
         document.querySelectorAll('.minecraft-button').forEach(button => {
             button.addEventListener('mousemove', (e) => {
