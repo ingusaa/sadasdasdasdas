@@ -39,37 +39,28 @@
         }
         
         .server-ip {
-            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+            text-shadow: none;
         }
     </style>
 </head>
 <body class="bg-gray-900 text-white">
     <!-- Navigation -->
     <nav class="gradient-bg py-4 sticky top-0 z-50">
-        <div class="container mx-auto px-4 flex justify-between items-center">
+        <div class="container mx-auto px-4 flex justify-center items-center">
             <div class="flex items-center">
                 <img src="https://mc-heads.net/avatar/Kostovcho/100" alt="Server Logo" class="w-10 h-10 rounded-[15%] mr-2">
                 <span class="minecraft-font text-xl font-bold">Kostovcho</span>
             </div>
-            <div class="hidden md:flex space-x-6 items-center">
-                <a href="#home" class="hover:text-yellow-300 transition">Начало</a>
-                <a href="#gamemodes" class="hover:text-yellow-300 transition">Игри</a>
-                <a href="#rules" class="hover:text-yellow-300 transition">Правила</a>
-                <a href="#staff" class="hover:text-yellow-300 transition">Екип</a>
-                <a href="#vote" class="hover:text-yellow-300 transition">Гласувай</a>
-            </div>
-            <button class="md:hidden text-xl">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="relative overflow-hidden">
         <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="absolute inset-0 bg-[url('https://images.steamusercontent.com/ugc/2310974141604980016/B4EF3A7A2D1772DE26B1A6F51CE33A04FD8BB917/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false')] bg-cover bg-center"></div>
         <div class="container mx-auto px-4 py-32 relative z-10 text-center">
-            <h1 class="minecraft-font text-5xl md:text-7xl font-bold mb-6 text-green-400">
-                Добре дошли в <span class="text-blue-400">Kostovcho</span> Сървър!
+            <h1 class="minecraft-font text-5xl md:text-7xl font-bold mb-6 text-white-400">
+                Добре дошли в <span class="text-green-400">Kostovcho</span> Сървър!
             </h1>
             <div class="bg-black bg-opacity-70 inline-block px-6 py-3 rounded-lg mb-8">
                 <h2 class="text-2xl md:text-3xl server-ip text-yellow-300 minecraft-font">
