@@ -3,383 +3,275 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JustAngel000 Minecraft Server</title>
+    <title>Kostovcho Minecraft Сървър | mc.kostovcho.com</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Custom CSS for some effects */
-        .server-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        @import url('https://fonts.googleapis.com/css2?family=Minecraft&display=swap');
+        
+        .minecraft-font {
+            font-family: 'Minecraft', sans-serif;
         }
         
-        .player-count {
-            animation: pulse 2s infinite;
+        .gradient-bg {
+            background: linear-gradient(135deg, #4CAF50 0%, #2196F3 50%, #9C27B0 100%);
         }
         
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        .gamemode-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         
-        .minecraft-button {
-            position: relative;
-            overflow: hidden;
+        .pixel-border {
+            border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><rect width="8" height="8" fill="none" stroke="black" stroke-width="2" /></svg>') 2;
+            border-style: solid;
+            border-width: 4px;
         }
         
-        .minecraft-button::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -60%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: rotate(30deg);
-            transition: all 0.3s;
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
         }
         
-        .minecraft-button:hover::after {
-            left: 100%;
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
         
-        .gamemode-icon {
-            transition: all 0.3s;
-        }
-        
-        .gamemode-card:hover .gamemode-icon {
-            transform: rotate(10deg) scale(1.1);
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #1a202c;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #4a5568;
-            border-radius: 5px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: #718096;
+        .server-ip {
+            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
         }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-100 font-sans">
+<body class="bg-gray-900 text-white">
     <!-- Navigation -->
-    <nav class="bg-gray-800 shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <img src="https://i1.sndcdn.com/avatars-000096663239-zn2950-t500x500.jpg" alt="Server Logo" class="h-8 w-8 rounded-[15%]">
-                    </div>
-                    <div class="ml-2 hidden md:block bg-gray-700 px-3 py-1 rounded-md text-center">
-                        <div class="text-xs text-gray-400">IP</div>
-                        <div class="text-sm font-medium text-green-400">202.36.95.10:22850</div>
-                    </div>
-                    <div class="hidden md:block ml-4">
-                        <div class="ml-10 flex items-baseline space-x-4">
-                            <a href="#home" class="text-green-400 hover:text-green-300 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                            <a href="#gamemodes" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Gamemodes</a>
-                            <a href="#features" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Features</a>
-                            <a href="#vote" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Vote</a>
-                            <a href="#staff" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Staff</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-4 flex items-center md:ml-6">
-                        <button class="minecraft-button bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">
-                            <i class="fas fa-play mr-2"></i> Play Now
-                        </button>
-                    </div>
-                </div>
-                <div class="flex items-center md:hidden">
-                    <div class="mr-2 bg-gray-700 px-2 py-1 rounded-md text-center">
-                        <div class="text-xs text-gray-400">IP</div>
-                        <div class="text-xs font-medium text-green-400">202.36.95.10:22850</div>
-                    </div>
-                    <div class="-mr-2 flex">
-                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
-                        <span class="sr-only">Open main menu</span>
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
+    <nav class="gradient-bg py-4 sticky top-0 z-50">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://mc-heads.net/avatar/Kostovcho/100" alt="Server Logo" class="w-10 h-10 rounded-[15%] mr-2">
+                <span class="minecraft-font text-xl font-bold">Kostovcho's Server</span>
             </div>
-        </div>
-        
-        <!-- Mobile menu -->
-        <div class="md:hidden hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" class="text-green-400 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                <a href="#gamemodes" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Gamemodes</a>
-                <a href="#features" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Features</a>
-                <a href="#vote" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Vote</a>
-                <a href="#staff" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Staff</a>
-                <button class="minecraft-button bg-green-600 hover:bg-green-700 text-white w-full px-4 py-2 rounded-md text-base font-medium mt-2 transition duration-300">
-                    <i class="fas fa-play mr-2"></i> Play Now
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#home" class="hover:text-yellow-300 transition">Начало</a>
+                <a href="#gamemodes" class="hover:text-yellow-300 transition">Игри</a>
+                <a href="#rules" class="hover:text-yellow-300 transition">Правила</a>
+                <a href="#staff" class="hover:text-yellow-300 transition">Екип</a>
+                <a href="#vote" class="hover:text-yellow-300 transition">Гласувай</a>
+                <button onclick="toggleLanguage()" class="ml-4 bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded text-sm flex items-center">
+                    <i class="fas fa-language mr-1"></i> EN
                 </button>
             </div>
+            <button class="md:hidden text-xl">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative bg-gray-800 overflow-hidden">
-        <div class="absolute inset-0">
-            <img class="h-full w-full object-cover opacity-100" src="https://images.steamusercontent.com/ugc/2310974141604980016/B4EF3A7A2D1772DE26B1A6F51CE33A04FD8BB917/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" alt="Minecraft banner">
-            <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+    <section id="home" class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="container mx-auto px-4 py-32 relative z-10 text-center">
+            <h1 class="minecraft-font text-5xl md:text-7xl font-bold mb-6 text-green-400">
+                Добре дошли в <span class="text-blue-400">Kostovcho</span> Сървър!
+            </h1>
+            <div class="bg-black bg-opacity-70 inline-block px-6 py-3 rounded-lg mb-8">
+                <h2 class="text-2xl md:text-3xl server-ip text-yellow-300 minecraft-font">
+                    IP: <span class="text-white">mc.kostovcho.com</span>
+                </h2>
+            </div>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-bold transition transform hover:scale-105">
+                    <i class="fas fa-play mr-2"></i> Включи се
+                </button>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-bold transition transform hover:scale-105">
+                    <i class="fas fa-users mr-2"></i> Discord
+                </button>
+                <button class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-bold transition transform hover:scale-105">
+                    <i class="fas fa-star mr-2"></i> Гласувай
+                </button>
+            </div>
         </div>
-        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white">
-                    <span class="block">Bulgadrax</span>
-                    <span class="block text-green-400">Minecraft Server</span>
-                </h1>
-                <p class="mt-6 max-w-lg mx-auto text-xl text-gray-300">
-                    Bulgaria lifesteal+factions server (that really loves dragons)
-                </p>
-                <div class="mt-10 flex flex-col items-center gap-4">
-                    <div class="server-card bg-gray-900 p-6 rounded-lg shadow-lg max-w-xs mx-auto transition duration-300">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-gray-400">Server IP</p>
-                                <p class="text-xl font-bold text-green-400">202.36.95.10:22850</p>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-gray-400">Players Online</p>
-                                <p class="text-xl font-bold player-count text-yellow-400">Loading...</p>
-                            </div>
-                        </div>
-                    </div>
-                    <button onclick="document.getElementById('rules-modal').classList.remove('hidden')" class="minecraft-button bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md text-lg font-medium transition duration-300">
-                        <i class="fas fa-scroll mr-2"></i> Rules
-                    </button>
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-900 to-transparent"></div>
+    </section>
+
+    <!-- Server Stats -->
+    <div class="bg-gray-800 py-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="bg-gray-700 p-4 rounded-lg">
+                    <div class="text-3xl font-bold text-green-400">24/7</div>
+                    <div class="text-gray-300">Работно време</div>
+                </div>
+                <div class="bg-gray-700 p-4 rounded-lg">
+                    <div class="text-3xl font-bold text-blue-400">1.20.5</div>
+                    <div class="text-gray-300">Версия</div>
+                </div>
+                <div class="bg-gray-700 p-4 rounded-lg">
+                    <div class="text-3xl font-bold text-purple-400">10</div>
+                    <div class="text-gray-300">Печеливши в томболи</div>
+                </div>
+                <div class="bg-gray-700 p-4 rounded-lg">
+                    <div class="text-3xl font-bold text-yellow-400">5</div>
+                    <div class="text-gray-300">Игрови режими</div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Gamemodes Section -->
     <section id="gamemodes" class="py-16 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
-                    Our <span class="text-green-400">Gamemodes</span>
-                </h2>
-                <p class="mt-4 max-w-2xl text-xl text-gray-400 mx-auto">
-                    Choose your favorite game and start playing with friends!
-                </p>
-            </div>
+        <div class="container mx-auto px-4">
+            <h2 class="minecraft-font text-4xl font-bold text-center mb-12 text-blue-400">
+                <i class="fas fa-gamepad mr-3"></i> Нашите Игрови Режими
+            </h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Factions -->
-                <div class="gamemode-card bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="gamemode-icon bg-red-600 p-3 rounded-full">
-                                <i class="fas fa-flag text-white text-2xl"></i>
-                            </div>
-                            <h3 class="ml-4 text-xl font-bold text-white">Factions</h3>
-                        </div>
-                        <p class="text-gray-400">
-                            Claim land, build your faction, and wage war against others. Protect your base with powerful defenses and raid enemy factions for loot and power.
-                        </p>
-                        <div class="mt-6">
-                            <button onclick="copyServerIP()" class="minecraft-button bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">
-                                Play Now
-                            </button>
-                        </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Eggwars -->
+                <div class="gamemode-card bg-gradient-to-br from-red-500 to-red-700 p-6 rounded-lg transition duration-300 cursor-pointer">
+                    <h3 class="text-2xl font-bold mb-4">Eggwars</h3>
+                    <img src="https://lh3.googleusercontent.com/0-mX8RNrZKm4kmY-Gyt_4r9Qt1twd2DBeOPpUnYc7h502IsFSCN-mCBQ7_C2QeZBwYWbNnbK72fIbrEIa8u8M-f7cFmnL9tWsZjFurEkz4cT8MVgIGHXdLTmZ_B5WLIXDdjNlyKtyVPBXPwWuN5ymo5YoqNfn_WnIcXK0qPkyZ7xVHX3vTtJcA=w1280" alt="Eggwars" class="w-full rounded-lg mb-4">
+                    <p class="text-gray-200 mb-4">Защитавайте яйцето си, докато се опитвате да унищожите другите. Съберете се с приятели и доминирайте на бойното поле!</p>
+                    <div class="flex justify-between items-center">
+                        <span class="bg-black bg-opacity-30 px-3 py-1 rounded-full text-sm">PvP</span>
+                        <span class="text-yellow-300 font-bold">50+ играчи</span>
                     </div>
                 </div>
                 
-                <!-- Lifestyle -->
-                <div class="gamemode-card bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="gamemode-icon bg-green-600 p-3 rounded-full">
-                                <i class="fas fa-home text-white text-2xl"></i>
-                            </div>
-                            <h3 class="ml-4 text-xl font-bold text-white">Lifestyle</h3>
-                        </div>
-                        <p class="text-gray-400">
-                            Build, explore, and thrive in our peaceful world. Enjoy economy, player shops, and community builds without the threat of PvP or raiding.
-                        </p>
-                        <div class="mt-6">
-                            <button onclick="copyServerIP()" class="minecraft-button bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">
-                                Play Now
-                            </button>
-                        </div>
+                <!-- Skywars -->
+                <div class="gamemode-card bg-gradient-to-br from-blue-500 to-blue-700 p-6 rounded-lg transition duration-300 cursor-pointer">
+                    <h3 class="text-2xl font-bold mb-4">Skywars</h3>
+                    <img src="https://lh4.googleusercontent.com/R2t2f9KyOqn1i6-jkOp1stxHbgLB5X4V72dNZaBNK0WLdaAMKsNybNX1tIroHw5ksKPzVY1oyBUdgE4V3mlFUJm1RpvmkJ4l7QtBBauULCjBlp1aKGx9Obo7N_oxzTZqzmpdQtiyl-cvVtW62tZqC20S46S2xUYaef1mowCRCtDlDBFY2XVsFw=w1280" alt="Skywars" class="w-full rounded-lg mb-4">
+                    <p class="text-gray-200 mb-4">Fight on floating islands with limited resources. Be the last player standing in this intense battle!</p>
+                    <div class="flex justify-between items-center">
+                        <span class="bg-black bg-opacity-30 px-3 py-1 rounded-full text-sm">PvP</span>
+                        <span class="text-yellow-300 font-bold">40+ Players</span>
+                    </div>
+                </div>
+                
+                <!-- Bedwars -->
+                <div class="gamemode-card bg-gradient-to-br from-purple-500 to-purple-700 p-6 rounded-lg transition duration-300 cursor-pointer">
+                    <h3 class="text-2xl font-bold mb-4">Bedwars</h3>
+                    <img src="https://lh6.googleusercontent.com/TAiE60pQSZEBf8_qQudsiTdy12h6SJnz3ZvkoxQ6LRgHPE9ypmNTa0eQKOFGF3xCaFKrICxFWRynO8mCFNjT4L85aoE6phdpVTEymMyZYa7cc2bBmtwtoRDExNddAnYjYsM42dsfJw-Mt5hC57_HRPl9fkaN9nAoZ1fiHI8gUScnv8dmAe0NfQ=w1280" alt="Bedwars" class="w-full rounded-lg mb-4">
+                    <p class="text-gray-200 mb-4">Defend your bed while attempting to destroy others'. Strategic gameplay with endless fun!</p>
+                    <div class="flex justify-between items-center">
+                        <span class="bg-black bg-opacity-30 px-3 py-1 rounded-full text-sm">PvP</span>
+                        <span class="text-yellow-300 font-bold">60+ Players</span>
+                    </div>
+                </div>
+                
+                <!-- Oneblock -->
+                <div class="gamemode-card bg-gradient-to-br from-green-500 to-green-700 p-6 rounded-lg transition duration-300 cursor-pointer">
+                    <h3 class="text-2xl font-bold mb-4">Oneblock</h3>
+                    <img src="https://lh3.googleusercontent.com/WNMAHcZXFwTRudHatJeF4xiPqfYIUqF-ieN7gd6lTJaVHtvi4paMUs8tuQOhy88Al87dtHfzTTBjHWbKPuiZ_Dj7k6tLM0qGp_u6wWfbDzcfUBRb5o3f6BQxtirMcfaUfcuH0ZUk2E2rwlDBAgXL4PFWchOuPrxcDfDWYmflQhvQ_YWI3D3l0w=w1280" alt="One Block" class="w-full rounded-lg mb-4">
+                    <p class="text-gray-200 mb-4">Start with a single block and expand your world. Survive and thrive in this unique challenge!</p>
+                    <div class="flex justify-between items-center">
+                        <span class="bg-black bg-opacity-30 px-3 py-1 rounded-full text-sm">Survival</span>
+                        <span class="text-yellow-300 font-bold">30+ Players</span>
+                    </div>
+                </div>
+                
+                
+                <!-- Build Battle -->
+                <div class="gamemode-card bg-gradient-to-br from-teal-500 to-teal-700 p-6 rounded-lg transition duration-300 cursor-pointer">
+                    <h3 class="text-2xl font-bold mb-4">Build Battle</h3>
+                    <img src="https://lh3.googleusercontent.com/cwHYYDJuCJSqxRZMXAV7wjDiIjz19xBdf9R9VsA3wKPz5zol8oKsYlz-BnwGrRWVsqqElz7yx0pHg9ZF86B-mC3uHoRlaqgVKBM-V5iXXAo79htq-AAq1kO7vh0BqI5hvhQF41O5e7YMB04bz2ssi2jo0nrhCUcEprHz2t9MVp8n1OSS4WTuiQ=w1280" alt="Build Battle" class="w-full rounded-lg mb-4">
+                    <p class="text-gray-200 mb-4">Show off your creativity! Build amazing structures based on themes and vote for the best builds.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="bg-black bg-opacity-30 px-3 py-1 rounded-full text-sm">Creative</span>
+                        <span class="text-yellow-300 font-bold">30+ Players</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="py-16 bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
-                    Server <span class="text-green-400">Features</span>
-                </h2>
-                <p class="mt-4 max-w-2xl text-xl text-gray-400 mx-auto">
-                    What makes our server special and worth playing on
-                </p>
-            </div>
+    <!-- Server Features -->
+    <section class="py-16 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="minecraft-font text-4xl font-bold text-center mb-12 text-green-400">
+                <i class="fas fa-star mr-3"></i> Server Features
+            </h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
-                    <div class="text-green-400 text-4xl mb-4">
-                        <i class="fas fa-bolt"></i>
+                <div class="bg-gray-700 p-6 rounded-lg text-center">
+                    <div class="bg-blue-500 bg-opacity-20 p-4 rounded-full inline-block mb-4">
+                        <i class="fas fa-shield-alt text-3xl text-blue-400"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">High Performance</h3>
-                    <p class="text-gray-400">
-                        Our server runs on powerful hardware with minimal lag, ensuring smooth gameplay even with many players online.
-                    </p>
+                    <h3 class="text-xl font-bold mb-2">Anti-Cheat</h3>
+                    <p class="text-gray-300">Advanced protection against hackers and cheaters for fair gameplay.</p>
                 </div>
                 
-                <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
-                    <div class="text-green-400 text-4xl mb-4">
-                        <i class="fas fa-shield-alt"></i>
+                <div class="bg-gray-700 p-6 rounded-lg text-center">
+                    <div class="bg-purple-500 bg-opacity-20 p-4 rounded-full inline-block mb-4">
+                        <i class="fas fa-trophy text-3xl text-purple-400"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Anti-Cheat</h3>
-                    <p class="text-gray-400">
-                        Advanced anti-cheat systems keep the gameplay fair and enjoyable for everyone by detecting and preventing hacks.
-                    </p>
+                    <h3 class="text-xl font-bold mb-2">Rewards</h3>
+                    <p class="text-gray-300">Daily rewards, vote perks, and seasonal events with exclusive items.</p>
                 </div>
                 
-                <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
-                    <div class="text-green-400 text-4xl mb-4">
-                        <i class="fas fa-star"></i>
+                <div class="bg-gray-700 p-6 rounded-lg text-center">
+                    <div class="bg-green-500 bg-opacity-20 p-4 rounded-full inline-block mb-4">
+                        <i class="fas fa-headset text-3xl text-green-400"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Custom Content</h3>
-                    <p class="text-gray-400">
-                        Unique kits, abilities, and cosmetics that you won't find anywhere else, regularly updated with new content.
-                    </p>
-                </div>
-                
-                <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
-                    <div class="text-green-400 text-4xl mb-4">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Tournaments</h3>
-                    <p class="text-gray-400">
-                        Regular tournaments with prizes for the best players. Compete and show your skills!
-                    </p>
-                </div>
-                
-                <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
-                    <div class="text-green-400 text-4xl mb-4">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Active Staff</h3>
-                    <p class="text-gray-400">
-                        Our friendly and professional staff team is always ready to help with any issues or questions you might have.
-                    </p>
-                </div>
-                
-                <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
-                    <div class="text-green-400 text-4xl mb-4">
-                        <i class="fas fa-gem"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Rewards System</h3>
-                    <p class="text-gray-400">
-                        Earn rewards by playing, voting, and participating in events. Unlock special cosmetics and perks!
-                    </p>
+                    <h3 class="text-xl font-bold mb-2">Support</h3>
+                    <p class="text-gray-300">Friendly staff team ready to help you 24/7 via Discord and in-game.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Vote Section -->
-    <section id="vote" class="py-16 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
-                    Vote for <span class="text-green-400">Rewards</span>
-                </h2>
-                <p class="mt-4 max-w-2xl text-xl text-gray-400 mx-auto">
-                    Help our server grow and get awesome rewards in return!
-                </p>
-            </div>
+    <!-- Rules Section -->
+    <section id="rules" class="py-16 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="minecraft-font text-4xl font-bold text-center mb-12 text-red-400">
+                <i class="fas fa-gavel mr-3"></i> Server Rules
+            </h2>
             
-            <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden max-w-3xl mx-auto">
-                <div class="p-6 sm:p-8">
-                    <div class="flex flex-col sm:flex-row items-center justify-between mb-6">
+            <div class="bg-gray-800 rounded-lg p-6 max-w-3xl mx-auto">
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="bg-red-500 text-white p-2 rounded-full mr-4">
+                            <i class="fas fa-ban"></i>
+                        </div>
                         <div>
-                            <h3 class="text-xl font-bold text-white">Vote for our server</h3>
-                            <p class="text-gray-400">Available on these platforms</p>
-                        </div>
-                        <div class="mt-4 sm:mt-0">
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-900 text-green-200">
-                                <i class="fas fa-gift mr-1"></i> Get rewards for voting!
-                            </span>
+                            <h3 class="font-bold text-lg">No Hacking/Cheating</h3>
+                            <p class="text-gray-300">Any form of cheating will result in a permanent ban.</p>
                         </div>
                     </div>
                     
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between p-4 bg-gray-700 rounded-lg">
-                            <div class="flex items-center">
-                                <div class="bg-blue-500 p-2 rounded-lg">
-                                    <i class="fab fa-discord text-white text-xl"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="font-medium text-white">Minecraft Server List</h4>
-                                    <p class="text-sm text-gray-400">Vote every 24 hours</p>
-                                </div>
-                            </div>
-                            <a href="#" class="minecraft-button bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">
-                                Vote Now
-                            </a>
+                    <div class="flex items-start">
+                        <div class="bg-yellow-500 text-white p-2 rounded-full mr-4">
+                            <i class="fas fa-comment-slash"></i>
                         </div>
-                        
-                        <div class="flex items-center justify-between p-4 bg-gray-700 rounded-lg">
-                            <div class="flex items-center">
-                                <div class="bg-orange-500 p-2 rounded-lg">
-                                    <i class="fas fa-fire text-white text-xl"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="font-medium text-white">Top Minecraft Servers</h4>
-                                    <p class="text-sm text-gray-400">Vote every 12 hours</p>
-                                </div>
-                            </div>
-                            <a href="#" class="minecraft-button bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">
-                                Vote Now
-                            </a>
-                        </div>
-                        
-                        <div class="flex items-center justify-between p-4 bg-gray-700 rounded-lg">
-                            <div class="flex items-center">
-                                <div class="bg-purple-500 p-2 rounded-lg">
-                                    <i class="fas fa-globe text-white text-xl"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="font-medium text-white">Minecraft Servers</h4>
-                                    <p class="text-sm text-gray-400">Vote every 24 hours</p>
-                                </div>
-                            </div>
-                            <a href="#" class="minecraft-button bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">
-                                Vote Now
-                            </a>
+                        <div>
+                            <h3 class="font-bold text-lg">No Toxicity</h3>
+                            <p class="text-gray-300">Be respectful to all players. No racism, sexism, or harassment.</p>
                         </div>
                     </div>
                     
-                    <div class="mt-8 bg-gray-700 p-4 rounded-lg">
-                        <h4 class="font-medium text-white mb-2">Voting Rewards</h4>
-                        <ul class="list-disc list-inside text-gray-400 space-y-1">
-                            <li>In-game currency to spend in our shop</li>
-                            <li>Exclusive cosmetic items</li>
-                            <li>Special voting crates with rare items</li>
-                            <li>Bonus experience for leveling up</li>
-                        </ul>
+                    <div class="flex items-start">
+                        <div class="bg-blue-500 text-white p-2 rounded-full mr-4">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">No Exploits</h3>
+                            <p class="text-gray-300">Abusing bugs or glitches will result in punishment.</p>
+                        </div>
                     </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-green-500 text-white p-2 rounded-full mr-4">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Have Fun!</h3>
+                            <p class="text-gray-300">This is a game - enjoy yourself and help others enjoy it too!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <p class="text-gray-400">Breaking any rules may result in temporary or permanent bans at staff discretion.</p>
                 </div>
             </div>
         </div>
@@ -387,409 +279,180 @@
 
     <!-- Staff Section -->
     <section id="staff" class="py-16 bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
-                    Our <span class="text-green-400">Team</span>
-                </h2>
-                <p class="mt-4 max-w-2xl text-xl text-gray-400 mx-auto">
-                    Meet the people who make this server possible
-                </p>
-            </div>
+        <div class="container mx-auto px-4">
+            <h2 class="minecraft-font text-4xl font-bold text-center mb-12 text-purple-400">
+                <i class="fas fa-crown mr-3"></i> Our Staff Team
+            </h2>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg">
-                    <div class="bg-green-600 h-2"></div>
-                    <div class="p-6 text-center">
-                        <div class="mx-auto h-24 w-24 rounded-full bg-gray-700 overflow-hidden border-4 border-green-500 mb-4">
-                            <img src="https://mc-heads.net/avatar/JustAngel000/100" alt="JustAngel000" class="h-full w-full object-cover">
-                        </div>
-                        <h3 class="text-xl font-bold text-white">JustAngel000</h3>
-                        <p class="text-green-400 font-medium">Owner</p>
-                        <p class="mt-2 text-gray-400">
-                            Server founder and main developer. Works hard to bring you the best Minecraft experience.
-                        </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Owner -->
+                <div class="bg-gradient-to-br from-purple-600 to-purple-800 p-6 rounded-lg text-center">
+                    <div class="bg-white bg-opacity-20 w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden">
+                        <img src="https://mc-heads.net/avatar/Kostovcho/100" alt="Kostovcho" class="w-full h-full object-cover">
                     </div>
+                    <h3 class="text-2xl font-bold">Kostovcho</h3>
+                    <div class="text-yellow-400 mb-3">Owner</div>
+                    <p class="text-gray-200 mb-4">Server creator and main developer. Loves building amazing experiences for players.</p>
                 </div>
                 
-                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg">
-                    <div class="bg-green-600 h-2"></div>
-                    <div class="p-6 text-center">
-                        <div class="mx-auto h-24 w-24 rounded-full bg-gray-700 overflow-hidden border-4 border-green-500 mb-4">
-                            <img src="https://mc-heads.net/avatar/Bgsmeoro/100" alt="Bgsmeoro" class="h-full w-full object-cover">
-                        </div>
-                        <h3 class="text-xl font-bold text-white">Bgsmeoro</h3>
-                        <p class="text-green-400 font-medium">Owner</p>
-                        <p class="mt-2 text-gray-400">
-                            Co-owner and server administrator. Helps manage and improve the server.
-                        </p>
+                <!-- Admin -->
+                <div class="bg-gradient-to-br from-blue-600 to-blue-800 p-6 rounded-lg text-center">
+                    <div class="bg-white bg-opacity-20 w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden">
+                        <img src="https://mc-heads.net/avatar/CAEC64/100" alt="Simona" class="w-full h-full object-cover">
                     </div>
+                    <h3 class="text-2xl font-bold">Simona</h3>
+                    <div class="text-red-400 mb-3">Admin</div>
+                    <p class="text-gray-200 mb-4">Keeps the server running smoothly and handles technical issues.</p>
                 </div>
                 
-                <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg">
-                    <div class="bg-red-600 h-2"></div>
-                    <div class="p-6 text-center">
-                        <div class="mx-auto h-24 w-24 rounded-full bg-gray-700 overflow-hidden border-4 border-red-500 mb-4">
-                            <img src="https://mc-heads.net/avatar/Kostovcho/100" alt="Kostovcho" class="h-full w-full object-cover">
-                        </div>
-                        <h3 class="text-xl font-bold text-white">Kostovcho</h3>
-                        <p class="text-red-400 font-medium">Alarahmetliq</p>
-                        <p class="mt-2 text-gray-400">
-                            Server moderator and community manager. Helps maintain order and fun gameplay.
-                        </p>
+                <!-- Moderator -->
+                <div class="bg-gradient-to-br from-green-600 to-green-800 p-6 rounded-lg text-center">
+                    <div class="bg-white bg-opacity-20 w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden">
+                        <img src="https://mc-heads.net/avatar/RapunzeLin/100" alt="Vanessa" class="w-full h-full object-cover">
                     </div>
+                    <h3 class="text-2xl font-bold">Vanessa</h3>
+                    <div class="text-green-400 mb-3">Moderator</div>
+                    <p class="text-gray-200 mb-4">Ensures fair play and helps resolve player disputes.</p>
                 </div>
             </div>
             
-            <div class="mt-16 text-center">
-                <h3 class="text-2xl font-bold text-white">Want to join our team?</h3>
-                <p class="mt-4 max-w-2xl text-xl text-gray-400 mx-auto">
-                    We're always looking for passionate and dedicated staff members!
-                </p>
-                <button class="minecraft-button mt-6 bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-md text-lg font-medium transition duration-300">
-                    Apply Now
+            <div class="mt-12 text-center">
+                <p class="text-gray-400">Interested in joining our staff team? Apply on our Discord server!</p>
+                <button class="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-bold transition">
+                    <i class="fab fa-discord mr-2"></i> Join Discord
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- Server Status -->
-    <section class="py-12 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-gray-800 rounded-xl shadow-xl p-6">
-                <div class="flex flex-col md:flex-row items-center justify-between">
-                    <div class="flex items-center mb-4 md:mb-0">
-                        <div class="relative">
-                            <div class="h-3 w-3 rounded-full bg-green-500 animate-ping absolute"></div>
-                            <div class="h-3 w-3 rounded-full bg-green-500"></div>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-lg font-bold text-white">Server Status</h3>
-                            <p class="text-green-400">Online and running smoothly</p>
-                        </div>
-                    </div>
-                    <div class="text-center md:text-right">
-                        <p class="text-gray-400">Server IP</p>
-                        <p class="text-xl font-bold text-green-400">202.36.95.10:22850</p>
-                    </div>
-                </div>
-                
-                <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="bg-gray-700 p-4 rounded-lg text-center">
-                        <p class="text-gray-400">Players Online</p>
-                        <p id="online-players" class="text-2xl font-bold text-green-400">Loading...</p>
-                    </div>
-                    <div class="bg-gray-700 p-4 rounded-lg text-center">
-                        <p class="text-gray-400">Max Players</p>
-                        <p id="max-players" class="text-2xl font-bold text-white">Loading...</p>
-                    </div>
-                    <div class="bg-gray-700 p-4 rounded-lg text-center">
-                        <p class="text-gray-400">Uptime</p>
-                        <p class="text-2xl font-bold text-blue-400">99.8%</p>
-                    </div>
-                    <div class="bg-gray-700 p-4 rounded-lg text-center">
-                        <p class="text-gray-400">Version</p>
-                        <p class="text-2xl font-bold text-yellow-400">1.20.5</p>
-                    </div>
-                </div>
-                
-                <div class="mt-8">
-                    <button onclick="copyServerIP()" class="minecraft-button w-full bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-md text-lg font-bold transition duration-300">
-                        <i class="fas fa-play mr-2"></i> Join Now
+    <!-- Vote Section -->
+    <section id="vote" class="py-16 gradient-bg">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="minecraft-font text-4xl font-bold mb-6 text-white">
+                <i class="fas fa-star mr-3"></i> Vote for Our Server
+            </h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto text-gray-100">
+                Voting helps our server grow and gives you awesome rewards! Vote on all sites for maximum benefits.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="bg-white bg-opacity-10 p-6 rounded-lg backdrop-blur-sm border border-white border-opacity-20">
+                    <h3 class="text-2xl font-bold mb-3">Planet Minecraft</h3>
+                    <p class="text-gray-200 mb-4">Vote here for 2x Vote Points!</p>
+                    <button class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-bold transition">
+                        Vote Now
                     </button>
                 </div>
+                
+                <div class="bg-white bg-opacity-10 p-6 rounded-lg backdrop-blur-sm border border-white border-opacity-20">
+                    <h3 class="text-2xl font-bold mb-3">Minecraft Servers</h3>
+                    <p class="text-gray-200 mb-4">Vote here for a Mystery Box!</p>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-bold transition">
+                        Vote Now
+                    </button>
+                </div>
+                
+                <div class="bg-white bg-opacity-10 p-6 rounded-lg backdrop-blur-sm border border-white border-opacity-20">
+                    <h3 class="text-2xl font-bold mb-3">TopG</h3>
+                    <p class="text-gray-200 mb-4">Vote here for In-Game Cash!</p>
+                    <button class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-bold transition">
+                        Vote Now
+                    </button>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-black bg-opacity-30 p-6 rounded-lg max-w-2xl mx-auto">
+                <h3 class="text-2xl font-bold mb-3 text-yellow-300">Vote Rewards</h3>
+                <ul class="text-left space-y-2 max-w-md mx-auto">
+                    <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> $500,000 In-Game Cash</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Exclusive Vote Crates</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Special Voting Rank</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Chance to win Rare Items</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-lg font-bold text-white mb-4">JustAngel000</h3>
-                    <p class="text-gray-400">
-                        The best Minecraft server with unique gamemodes and an amazing community.
-                    </p>
-                    <div class="mt-4 flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i class="fab fa-discord text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i class="fab fa-twitter text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i class="fab fa-youtube text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i class="fab fa-tiktok text-xl"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-bold text-white mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#home" class="text-gray-400 hover:text-white">Home</a></li>
-                        <li><a href="#gamemodes" class="text-gray-400 hover:text-white">Gamemodes</a></li>
-                        <li><a href="#features" class="text-gray-400 hover:text-white">Features</a></li>
-                        <li><a href="#vote" class="text-gray-400 hover:text-white">Vote</a></li>
-                        <li><a href="#staff" class="text-gray-400 hover:text-white">Staff</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-bold text-white mb-4">Server Info</h3>
-                    <ul class="space-y-2">
-                        <li class="text-gray-400">IP: 202.36.95.10:22850</li>
-                        <li class="text-gray-400">Version: 1.20.1</li>
-                        <li class="text-gray-400">Location: Global</li>
-                        <li class="text-gray-400">Players: 127/200</li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-bold text-white mb-4">Support</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Rules</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Store</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Apply for Staff</a></li>
-                    </ul>
-                </div>
+    <!-- Join Now Section -->
+    <section class="py-16 bg-gray-900">
+        <div class="container mx-auto px-4 text-center">
+            <div class="animate-float inline-block mb-8">
+                <img src="https://mc-heads.net/avatar/Kostovcho/150" alt="Kostovcho" class="rounded-full border-4 border-yellow-400">
             </div>
-            
-            <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 text-sm">
-                    &copy; 2023 JustAngel000 Minecraft Server. All rights reserved.
-                </p>
-                <div class="mt-4 md:mt-0 flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
-                    <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+            <h2 class="minecraft-font text-4xl font-bold mb-6 text-green-400">
+                Ready to Join the Adventure?
+            </h2>
+            <div class="bg-black bg-opacity-70 inline-block px-6 py-3 rounded-lg mb-8">
+                <h3 class="text-2xl md:text-3xl server-ip text-yellow-300 minecraft-font">
+                    IP: <span class="text-white">mc.kostovcho.com</span>
+                </h3>
+            </div>
+            <button class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-bold text-xl transition transform hover:scale-105">
+                <i class="fas fa-play mr-2"></i> Connect Now
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center">
+                        <img src="https://mc-heads.net/avatar/Kostovcho/100" alt="Server Logo" class="w-10 h-10 rounded-[15%] mr-2">
+                        <span class="minecraft-font text-xl font-bold">Kostovcho's Server</span>
+                    </div>
+                    <p class="text-gray-400 mt-2">The best bulgarian Minecraft server experience!</p>
+                </div>
+                
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-discord text-2xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter text-2xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube text-2xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-tiktok text-2xl"></i></a>
+                </div>
+                
+                <div class="text-gray-400 text-sm">
+                    &copy; 2023 Kostovcho's Minecraft Server. All rights reserved.
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Rules Modal -->
-    <div id="rules-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black bg-opacity-70">
-        <div class="bg-gray-800 rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div class="p-6">
-                <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-2xl font-bold text-white">Server Rules</h3>
-                    <button id="close-rules-modal" class="text-gray-400 hover:text-white">
-                        <i class="fas fa-times text-2xl"></i>
-                    </button>
-                </div>
-                <div id="rules-modal-content" class="prose prose-invert max-w-none">
-                    <h2 class="text-xl font-bold text-white mb-4">🔒 General Rules</h2>
-                    <ul class="list-disc pl-6 space-y-2 text-gray-300">
-                        <li>No cheating or hacking – Use of mods like x-ray, fly, kill aura, or any unfair client is strictly prohibited.</li>
-                        <li>No duping or exploiting bugs – Report bugs instead of abusing them.</li>
-                        <li>No griefing non-faction zones – Lifestyle builds and public areas must be respected.</li>
-                        <li>Respect all players – No racism, hate speech, harassment, or excessive toxicity.</li>
-                        <li>No spamming or advertising – Don't flood chat or advertise other servers.</li>
-                        <li>Use English in public chat – For moderation and fairness, keep public messages in English.</li>
-                        <li>No inappropriate content – Builds, usernames, and skins must remain family-friendly.</li>
-                        <li>Follow staff directions – Arguing with staff can result in a mute or ban.</li>
-                    </ul>
-
-                    <h2 class="text-xl font-bold text-white mt-8 mb-4">⚔️ Faction Rules</h2>
-                    <ul class="list-disc pl-6 space-y-2 text-gray-300">
-                        <li>Factions can raid other factions – But use proper tactics; no glitching or unfair base access.</li>
-                        <li>No TP trapping or killing in safe zones – Killing players via teleport traps or inside protected zones is forbidden.</li>
-                        <li>No insiding – Betraying your faction to give others an unfair advantage will lead to a ban.</li>
-                        <li>No claiming near spawn or lifestyle zones – Keep faction claims at a respectful distance.</li>
-                        <li>Fair raids only – You must break in with skill, not bugs, glitches, or illegal mods.</li>
-                        <li>Limit redstone lag machines – Do not build machines that intentionally lag the server.</li>
-                    </ul>
-
-                    <h2 class="text-xl font-bold text-white mt-8 mb-4">🏡 Lifestyle Rules</h2>
-                    <ul class="list-disc pl-6 space-y-2 text-gray-300">
-                        <li>Lifestyle players are neutral – Don't attack them unless they enter faction territory or engage first.</li>
-                        <li>Respect lifestyle builds – These are not raidable unless agreed upon in events.</li>
-                        <li>No forcing lifestyle players to join factions – Let them play at their own pace.</li>
-                    </ul>
-
-                    <h2 class="text-xl font-bold text-white mt-8 mb-4">📜 Economy & Marketplace</h2>
-                    <ul class="list-disc pl-6 space-y-2 text-gray-300">
-                        <li>No scamming in trades or shops – Always provide what you advertise.</li>
-                        <li>Don't abuse the auction or shop system – Keep prices fair, no troll listings.</li>
-                    </ul>
-
-                    <h2 class="text-xl font-bold text-white mt-8 mb-4">🛡️ Final Rule</h2>
-                    <p class="text-gray-300">
-                        Have fun & help build the community – Toxic players ruin the game. Let's grow a fun and fair server together!
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-8 right-8 bg-green-600 hover:bg-green-700 text-white p-3 rounded-full shadow-lg transition duration-300 opacity-0 invisible">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
     <script>
-        // Function to copy server IP
-        function copyServerIP() {
-            const ip = '202.36.95.10:22850';
-            navigator.clipboard.writeText(ip)
-                .then(() => alert(`Server IP ${ip} copied to clipboard!`))
-                .catch(err => console.error('Failed to copy IP:', err));
-        }
+        // Simple mobile menu toggle
+        document.querySelector('nav button').addEventListener('click', function() {
+            const navLinks = document.querySelector('nav .hidden');
+            navLinks.classList.toggle('hidden');
+            navLinks.classList.toggle('flex');
+            navLinks.classList.toggle('flex-col');
+            navLinks.classList.toggle('absolute');
+            navLinks.classList.toggle('top-16');
+            navLinks.classList.toggle('left-0');
+            navLinks.classList.toggle('right-0');
+            navLinks.classList.toggle('bg-gray-800');
+            navLinks.classList.toggle('p-4');
+            navLinks.classList.toggle('space-y-4');
+            navLinks.classList.toggle('space-x-6');
+        });
 
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Back to top button
-        const backToTopButton = document.getElementById('back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.remove('opacity-0', 'invisible');
-                backToTopButton.classList.add('opacity-100', 'visible');
-            } else {
-                backToTopButton.classList.remove('opacity-100', 'visible');
-                backToTopButton.classList.add('opacity-0', 'invisible');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                }
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
-        
-        // Fetch and update server stats
-        async function fetchServerStats() {
-            try {
-                const response = await fetch('https://api.mcsrvstat.us/2/202.36.95.10:22850');
-                const data = await response.json();
-                
-                const statusElement = document.querySelector('.relative .h-3');
-                const statusTextElement = document.querySelector('.ml-4 p');
-                const onlinePlayersElement = document.getElementById('online-players');
-                const maxPlayersElement = document.getElementById('max-players');
-                const playerCountElement = document.querySelector('.player-count');
-                const versionElement = document.querySelector('footer li:nth-child(2)');
-                
-                if (data.online) {
-                    // Update status indicator
-                    if (statusElement) {
-                        statusElement.classList.remove('bg-red-500');
-                        statusElement.classList.add('bg-green-500');
-                    }
-                    if (statusTextElement) {
-                        statusTextElement.textContent = 'Online and running smoothly';
-                        statusTextElement.classList.remove('text-red-400');
-                        statusTextElement.classList.add('text-green-400');
-                    }
-                    
-                    // Update player counts
-                    if (onlinePlayersElement) onlinePlayersElement.textContent = data.players.online;
-                    if (maxPlayersElement) maxPlayersElement.textContent = data.players.max;
-                    if (playerCountElement) playerCountElement.textContent = data.players.online;
-                    
-                    // Update version
-                    if (data.version && versionElement) {
-                        versionElement.textContent = `Version: ${data.version}`;
-                    }
-                    
-                    // Update gamemode player counts if available
-                    if (data.players.list) {
-                        document.querySelectorAll('.gamemode-card').forEach(card => {
-                        });
-                    }
-                } else {
-                    // Server offline
-                    if (statusElement) {
-                        statusElement.classList.remove('bg-green-500');
-                        statusElement.classList.add('bg-red-500');
-                    }
-                    if (statusTextElement) {
-                        statusTextElement.textContent = 'Server offline';
-                        statusTextElement.classList.remove('text-green-400');
-                        statusTextElement.classList.add('text-red-400');
-                    }
-                    if (onlinePlayersElement) onlinePlayersElement.textContent = '0';
-                    if (playerCountElement) playerCountElement.textContent = '0';
-                }
-            } catch (error) {
-                console.error('Error fetching server stats:', error);
-            }
+    </script>
+    <script>
+        function toggleLanguage() {
+            // This would be implemented to switch between languages
+            // For now it just reloads the page
+            window.location.href = 'index-en.html'; // English version
         }
-
-        // Initial fetch and then every 30 seconds
-        fetchServerStats();
-        setInterval(fetchServerStats, 30000);
-        
-        // Rules modal functionality
-        const rulesModal = document.getElementById('rules-modal');
-        const closeRulesModal = document.getElementById('close-rules-modal');
-
-        // Show rules modal when clicking rules button in nav
-        document.querySelectorAll('a[href="#rules"]').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                rulesModal.classList.remove('hidden');
-            });
-        });
-
-        // Close modal
-        closeRulesModal.addEventListener('click', () => {
-            rulesModal.classList.add('hidden');
-        });
-
-        // Close when clicking outside modal
-        rulesModal.addEventListener('click', (e) => {
-            if (e.target === rulesModal) {
-                rulesModal.classList.add('hidden');
-            }
-        });
-
-        // Minecraft button effect
-        document.querySelectorAll('.minecraft-button').forEach(button => {
-            button.addEventListener('mousemove', (e) => {
-                const rect = button.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                button.style.setProperty('--x', `${x}px`);
-                button.style.setProperty('--y', `${y}px`);
-            });
-        });
     </script>
 </body>
 </html>
